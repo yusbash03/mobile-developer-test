@@ -4,10 +4,11 @@ import { View, Text, TouchableOpacity, Alert, Image, StyleSheet, TextInput } fro
 import { colorPalletes } from '../theme'
 import { StatusBar } from 'expo-status-bar'
 import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { UPDATEUSER } from '../redux/crudActions'
+import { UPDATEUSER, updateUsers } from '../redux/crudActions'
 import axios from 'axios'
 import { APIBaseUrl } from '../Api/Apis'
 import { useDispatch } from 'react-redux'
+
 
 export default function EditUserScreen() {
     const navigation = useNavigation();
@@ -15,22 +16,30 @@ export default function EditUserScreen() {
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
     const dispatch = useDispatch();
+
+    const handleUpdateUser = () => {
+        console.log('click')
+        dispatch(updateUsers(id, { name, job }));
+        setName('');
+        setJob('');
+        // Reset input fields or navigate to another screen
+      };
   
-    const handleUpdateUser = async () => {
-        const user = {
-            name: name,
-            job: job
-        }
-        const response = await axios.put(`${APIBaseUrl}/users/${id}`, user);
-        if(response.status !== 200){
-            Alert.alert("Error", "Add User Failed")
-        }
-        //console.log(user);
-        console.log("Res",response.data);
-        dispatch(UPDATEUSER(user));
-        navigation.navigate('Users');
-        alert("success");
-    };
+    // const handleUpdateUser = async () => {
+    //     const user = {
+    //         name: name,
+    //         job: job
+    //     }
+    //     const response = await axios.put(`${APIBaseUrl}/users/${id}`, user);
+    //     if(response.status !== 200){
+    //         Alert.alert("Error", "Add User Failed")
+    //     }
+    //     //console.log(user);
+    //     console.log("Res",response.data);
+    //     dispatch(UPDATEUSER(user));
+    //     navigation.navigate('Users');
+    //     alert("success");
+    // };
     const handleNotAvailable =()=>{
         Alert.alert('Warning!!!', 'Not yet available');
       }

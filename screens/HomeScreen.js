@@ -2,7 +2,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import { useDispatch } from 'react-redux';
-import { setEmail } from '../redux/reducer/homeReducer';
 
 export default function HomeScreen() {
    const {params: {email}} = useRoute();   
@@ -21,9 +20,12 @@ export default function HomeScreen() {
          <TouchableOpacity onPress={()=> nav.push('Create')} className='p-5 bg-sky-600 text-white rounded-xl'>
             <Text className='font-semibold text-white'>Add User</Text>
          </TouchableOpacity>
-         <TouchableOpacity onPress={()=>nav.navigate('Users')}  className='p-5 bg-teal-300 text-white rounded-xl'>
+         <TouchableOpacity onPress={()=>nav.navigate('UsersList')}  className='p-5 bg-teal-300 text-white rounded-xl'>
             <Text className='font-semibold text-white'>View List</Text>
          </TouchableOpacity>
+         {/* <TouchableOpacity onPress={()=>nav.navigate('Users')}  className='p-5 bg-teal-300 text-white rounded-xl'>
+            <Text className='font-semibold text-white'>View List</Text>
+         </TouchableOpacity> */}
          <TouchableOpacity onPress={()=>nav.navigate('Login')}  className='p-5 bg-red-400 text-white rounded-xl'>
             <Text className='font-semibold text-white'>Logout</Text>
          </TouchableOpacity>

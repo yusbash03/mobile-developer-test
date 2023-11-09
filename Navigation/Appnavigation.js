@@ -8,6 +8,7 @@ import { store } from '../redux/store';
 import CreateUserScreen from '../screens/CreateUserScreen';
 import EditUserScreen from '../screens/EditUserScreen';
 import ListScreen from '../screens/ListScreen';
+import UsersListScreen from '../screens/UsersListScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,7 @@ export default function Appnavigation() {
       <Stack.Screen name="Create" options={{headerShown: false}} component={CreateUserScreen} />
       <Stack.Screen name="Edit" options={{headerShown: false}} component={EditUserScreen} />
       <Stack.Screen name="Users" options={{headerShown: false}} component={ListScreen} />
+      <Stack.Screen name="UsersList" options={{headerShown: false}} component={UsersListScreen} />
     </Stack.Navigator>
       </Provider>
   

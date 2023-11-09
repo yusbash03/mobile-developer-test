@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native'
 import React, {useState}  from 'react'
-import { View, Text, TouchableOpacity, Alert, Image, StyleSheet, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, Alert, Image, StyleSheet, TextInput, KeyboardAvoidingView, Platform } from 'react-native'
 import { colorPalletes } from '../theme'
 import { StatusBar } from 'expo-status-bar'
 import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux'
-import { ADDUSER } from '../redux/crudActions';
+import { ADDUSER, addUser, addUsers } from '../redux/crudActions';
 import axios from 'axios'
 import { APIBaseUrl } from '../Api/Apis'
 import { connect } from 'react-redux'
@@ -16,7 +16,15 @@ import { connect } from 'react-redux'
         const [job, setJob] = useState('');
         const dispatch = useDispatch();
     
-        const handleAddUser = async () => {
+        const handleAddUser = () => {
+            console.log('click')
+            dispatch(addUsers({ name, job }));
+            setName('');
+            setJob('');
+            // Reset input fields or navigate to another screen
+          };
+          
+        const handleCreateUser = async () => {
             const user = {
                 name: name,
                 job: job
@@ -54,6 +62,7 @@ import { connect } from 'react-redux'
 
         {/* form */}
         <View className="flex items-center mx-5 space-y-4 mb-20">
+            
             <Animated.View 
                 entering={FadeInDown.duration(1000).springify()} 
                 className="bg-black/5 p-5 rounded-2xl w-full">
@@ -80,7 +89,7 @@ import { connect } from 'react-redux'
                     <Text className="text-xl font-bold text-white text-center">Sumbit</Text>
                 </TouchableOpacity>
             </Animated.View>
-
+            
           
         </View>
       </View>

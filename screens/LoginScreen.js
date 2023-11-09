@@ -1,10 +1,9 @@
 import { useNavigation } from '@react-navigation/native'
 import React, {useState} from 'react'
-import { View, StyleSheet, Text, Alert, Image, TextInput, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, Alert, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { colorPalletes } from '../theme'
 import { StatusBar } from 'expo-status-bar'
 import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
-import { loginUser, fetchUserDetails } from '../redux/crudActions/loginAction';
 import axios from 'axios';
 import { APIBaseUrl } from '../Api/Apis'
 
@@ -65,6 +64,7 @@ export default function LoginScreen() {
 
             {/* form */}
             <View className="flex items-center mx-5 space-y-4">
+              
                 <Animated.View 
                     entering={FadeInDown.duration(1000).springify()} 
                     className="bg-black/5 p-5 rounded-2xl w-full">
